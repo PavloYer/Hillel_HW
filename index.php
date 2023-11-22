@@ -14,4 +14,3 @@ function calculate(int $value_1, int $value_2, ?closure $toPrint = null): int
 calculate(34, 345, function (int $value): void {
     echo $value . PHP_EOL;
 });
-
