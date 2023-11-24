@@ -34,7 +34,7 @@ function countDivided_3 (array $array): array {
     $length = count($array);
 
     for($i = 0; $i < $length; $i++) {
-        if(!($array[$i] == 0 || $array[$i] % 3)) {
+        if(($array[$i] !== 0 && ($array[$i] % 3)) == 0) {
             $count[] = $array[$i];
         }
     }
