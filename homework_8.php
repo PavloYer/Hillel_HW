@@ -9,6 +9,15 @@ function getRandValArray(int $length): array
     return $randArray;
 }
 
+function getSum(array $array): float
+{
+    $sum = 0;
+    foreach ($array as $value) {
+        $sum += $value;
+    }
+    return $sum;
+}
+
 function getMultiplied(array $array): float
 {
     $sum = 1;
@@ -50,6 +59,7 @@ foreach ($aData as $value)
     echo $value . " ";
 echo PHP_EOL;
 
+echo "Sum: " . getSum($aData) . PHP_EOL;
 echo "Multiplication: " . getMultiplied($aData) . PHP_EOL;
 echo "Count number 5: " . countValue_5($aData) . PHP_EOL;
 
