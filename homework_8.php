@@ -9,7 +9,8 @@ function getRandValArray(int $length): array
     return $randArray;
 }
 
-function getMultiplied (array $array): float {
+function getMultiplied(array $array): float
+{
     $sum = 1;
     foreach ($array as $value) {
         $sum *= $value;
@@ -17,24 +18,26 @@ function getMultiplied (array $array): float {
     return $sum;
 }
 
-function countValue_5 (array $array): int {
+function countValue_5(array $array): int
+{
     $count = 0;
     $length = count($array);
 
-    while($length) {
-        if($array[$length-1] == 5)
+    while ($length) {
+        if ($array[$length - 1] == 5)
             $count++;
         $length--;
     }
     return $count;
 }
 
-function countDivided_3 (array $array): array {
+function countDivided_3(array $array): array
+{
     $count = [];
     $length = count($array);
 
-    for($i = 0; $i < $length; $i++) {
-        if(($array[$i] !== 0 && ($array[$i] % 3)) == 0) {
+    for ($i = 0; $i < $length; $i++) {
+        if (($array[$i] !== 0) && ($array[$i] % 3) == 0) {
             $count[] = $array[$i];
         }
     }
