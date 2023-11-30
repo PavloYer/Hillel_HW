@@ -1,23 +1,35 @@
 <?php
 
-echo "1: Add new notation to logs.txt
-2: Get last notation from logs.txt
+function addNewLog(string $fileName): void
+{
+    echo "Record: ";
+    file_put_contents($fileName, fgets(STDIN), FILE_APPEND);
+}
+
+function getLastLog(string $fileName): string
+{
+    if (file_exists($fileName)) {
+        $line = file($fileName);
+        return $line[array_key_last($line)];
+    }
+    return "File doesn't exist";
+}
+
+echo "1: Add new notation
+2: Get last notation
 Choose option: ";
+$option = fgets(STDIN);
 
-switch (fgets(STDIN)) {
-    // Task 1
+echo "Enter file name: ";
+$fileName = trim(fgets(STDIN));
+
+switch ($option) {
     case 1:
-        file_put_contents('logs.txt', fgets(STDIN), FILE_APPEND);
+        addNewLog($fileName);
         break;
-    // Task 2
     case 2:
-        if (file_exists('logs.txt')) {
-            $lines = file('logs.txt');
-            echo $lines[array_key_last($lines)];
-        } else {
-            echo "File doesn't exist";
-        }
+        echo getLastLog($fileName);
         break;
-
-    default: echo "Invalid operation";
+    default:
+        echo "Invalid operation";
 }
