@@ -16,7 +16,8 @@ class Order
         return $this->items;
     }
 
-    public function getSum (): float {
+    public function getSum(): float
+    {
         $total = 0;
 
         foreach ($this->items as $item) {
@@ -25,11 +26,13 @@ class Order
         return $total;
     }
 
-    public function addToOrder (array $order): void {
+    public function addToOrder(array $order): void
+    {
         $this->items[] = $order;
     }
 
-    public function printOrder (): void {
+    public function printOrder(): void
+    {
         foreach ($this->items as $item) {
             foreach ($item as $value) {
                 echo $value . " ";

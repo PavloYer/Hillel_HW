@@ -21,5 +21,3 @@ $quickOrder->addToOrder(['keyboard', 2, 1400]);
 $quickOrder->printOrder() . PHP_EOL;
 echo "Total price: " . $quickOrder->getSum() . PHP_EOL;
 
-
-
