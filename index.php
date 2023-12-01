@@ -21,15 +21,5 @@ $quickOrder->addToOrder(['keyboard', 2, 1400]);
 $quickOrder->printOrder() . PHP_EOL;
 echo "Total price: " . $quickOrder->getSum() . PHP_EOL;
 
-//$array = [
-//    ['name' => 'Bob', 'id' => 1, 'position' => 'editor', 'age' => 43],
-//    ['name' => 'Bob', 'id' => 4, 'position' => 'editor', 'age' => 56],
-//    ['name' => 'Marlin', 'id' => 6, 'position' => 'xor', 'age' => 27],
-//    ['name' => 'Andy', 'id' => 5, 'position' => 'editor', 'age' => [63,4]],
-//    ['name' => 'Max', 'id' => 2, 'position' => 'trainee', 'age' => 19],
-//];
-//
-//$array_keys = ['first', 'second', 'third', 'fourth'];
-//$a = array_search(5, $array[3], true);
 
 
