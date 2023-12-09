@@ -4,19 +4,12 @@ declare(strict_types=1);
 require_once 'configs.php';
 require_once ROOT . 'classes/TaskTracker.php';
 require_once ROOT . 'classes/TaskStatus.php';
-require_once ROOT . 'functions/createNewTracker.php';
 
 use classes\TaskTracker;
 use classes\TaskStatus;
 
 try {
-    createNewTracker('dailyTasks.txt');
-} catch (Exception $exception) {
-    echo $exception->getMessage() . PHP_EOL;
-}
-
-try {
-    $task = new TaskTracker('dailyTasks.txt');
+    $task = new TaskTracker('newTasks.txt');
 } catch (Exception $exception) {
     echo $exception->getMessage() . PHP_EOL;
     exit;

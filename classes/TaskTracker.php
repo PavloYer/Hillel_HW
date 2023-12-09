@@ -32,7 +32,7 @@ class TaskTracker
 
     }
 
-    public function deleteTask($taskID): TaskTracker
+    public function deleteTask($taskID): void
     {
         if (!isset($this->tasks[$taskID])) {
             throw new \Exception('Task ID for deleting not found');
@@ -40,10 +40,9 @@ class TaskTracker
         unset($this->tasks[$taskID]);
 
         $this->rewriteTracker();
-        return $this;
     }
 
-    public function completeTask($taskID, TaskStatus $status): TaskTracker
+    public function completeTask($taskID, TaskStatus $status): void
     {
         if (!isset($this->tasks[$taskID])) {
             throw new \Exception('Task ID for completing not found');
@@ -51,7 +50,6 @@ class TaskTracker
 
         $this->tasks[$taskID][1] = $status->value;
         $this->rewriteTracker();
-        return $this;
     }
 
     public function getTasks(): array
@@ -68,19 +66,19 @@ class TaskTracker
         return $sortedTasks;
     }
 
-    public function setTrackerName(string $trackerName): TaskTracker
+    public function setTrackerName(string $trackerName): void
     {
-        if (!file_exists($this->getPath($trackerName))) {
-            throw new \Exception('FIle not found');
-        }
-
         $extension = pathinfo($trackerName, PATHINFO_EXTENSION);
         if (!in_array($extension, ['txt', 'scv'])) //todo use enum
         {
-            throw new \Exception('FIle format is invalid');
+            throw new \Exception('File format is invalid');
         }
+
+        if (!file_exists($this->getPath($trackerName))) {
+            fclose(fopen($this->getPath($trackerName), 'a'));
+        }
+
         $this->trackerName = $trackerName;
-        return $this;
     }
 
     public function getTrackerName(): string
