@@ -1,37 +1,43 @@
 <?php
 declare(strict_types=1);
 
-use classes\Order;
-
 require_once 'configs.php';
-require_once ROOT . 'classes/Order.php';
+require_once ROOT . 'classes/TaskTracker.php';
+require_once ROOT . 'classes/TaskStatus.php';
+require_once ROOT . 'functions/createNewTracker.php';
 
+use classes\TaskTracker;
+use classes\TaskStatus;
 
 try {
-    $quickOrder = new Order([
-        ['title' => 'gloves', 'amount' => 300, 'price' => 65.7],
-        ['title' => 'boots', 'amount' => 42, 'price' => 112],
-        ['title' => 'coat', 'amount' => 7, 'price' => 956],
-        ['title' => 'hat', 'amount' => 34, 'price' => 124.98],
-        ['title' => 'shoes', 'amount' => 60, 'price' => 375],
-    ]);
+    createNewTracker('dailyTasks.txt');
 } catch (Exception $exception) {
-    echo $exception->getMessage();
+    echo $exception->getMessage() . PHP_EOL;
+}
+
+try {
+    $task = new TaskTracker('dailyTasks.txt');
+} catch (Exception $exception) {
+    echo $exception->getMessage() . PHP_EOL;
     exit;
 }
 
-$quickOrder->printOrder() . PHP_EOL;
-echo "Total price: " . $quickOrder->getSum() . PHP_EOL;
+$task->addTask('gym', 7);     //метод, який додає завдання з назвою $taskName та пріоритетом $priority до списку завдань.
+$task->addTask('cooking', 3); //метод, який додає завдання з назвою $taskName та пріоритетом $priority до списку завдань.
+$task->addTask('cleaning', 7);  //метод, який додає завдання з назвою $taskName та пріоритетом $priority до списку завдань.
+$task->addTask('resting', 1); //метод, який додає завдання з назвою $taskName та пріоритетом $priority до списку завдань.
+$task->addTask('walking', 4); //метод, який додає завдання з назвою $taskName та пріоритетом $priority до списку завдань.
 
 try {
-    $quickOrder->addToOrder([
-        ['title' => 'keyboard', 'amount' => 2, 'price' => 1400]
-    ]);
+    $task->deleteTask(4);
 } catch (Exception $exception) {
-    echo $exception->getMessage();
-    exit;
+    echo $exception->getMessage() . PHP_EOL;
 }
 
-$quickOrder->printOrder() . PHP_EOL;
-echo "Total price: " . $quickOrder->getSum() . PHP_EOL;
+try {
+    $task->completeTask(3, TaskStatus::done);
+} catch (Exception $exception) {
+    echo $exception->getMessage() . PHP_EOL;
+}
 
+var_dump($task->getTasks());    // метод, який повертає всі завдання зі списку відсортовані за пріоритетом в порядку спадання.
