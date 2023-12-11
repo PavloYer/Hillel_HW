@@ -9,3 +9,6 @@ FROM php:8.2.6-apache
 #    docker-php-ext-configure gd --enable-gd --with-freetype --with-jpeg --with-webp && \
 #    docker-php-ext-install gd && \
 #    a2enmod rewrite
+
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
