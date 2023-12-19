@@ -1,16 +1,16 @@
 <?php
-require_once 'classes/Rectangle.php';
-require_once 'classes/Circle.php';
+declare(strict_types=1);
 
-use classes\Rectangle;
-use classes\Circle;
+require_once 'configs.php';
+require_once 'classes/Order.php';
+require_once 'classes/MeestPoshtaDelivery.php';
+require_once 'classes/NovaPoshtaDelivery.php';
+require_once 'classes/UkrPoshtaDelivery.php';
 
-$rect = new Rectangle(7, 4);
 
-echo $rect->perimeter() . PHP_EOL;
-echo $rect->area() . PHP_EOL;
+//$postService = new MeestPoshtaDelivery(10,3,4);
+//$postService = new NovaPoshtaDelivery(20, 15, 30);
+$postService = new UkrPoshtaDelivery(900, 1.75, 'free123');
 
-$circ = new Circle(6);
-
-echo $circ->perimeter() . PHP_EOL;
-echo $circ->area();
+$clientOrder = new Order(1740, $postService);
+echo $clientOrder->getFinalAmount();
