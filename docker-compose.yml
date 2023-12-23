@@ -11,3 +11,13 @@ services:
         - ./xdebug.ini:/usr/local/ect/php/conf.d/xdebug.ini
       ports:
         - "8080:80"
+      depends_on:
+        - mysql
+  mysql:
+    image: mysql:8.0
+    volumes:
+      - ./mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
